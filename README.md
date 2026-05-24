@@ -399,8 +399,6 @@ Expected response:
 
 # FLY (LAB6)
 
----
-
 ## Movies endpoint
 
 <img width="552" height="789" alt="image" src="https://github.com/user-attachments/assets/4ecae0f2-c8fc-47bd-a046-f5c09e78dadb" />
