@@ -1,6 +1,12 @@
 # Movie Catalog API
 
 Production-grade REST API для каталогу фільмів.
+---
+
+Production URL:
+https://movie-catalog-api.fly.dev/
+
+---
 
 Проєкт створений на Node.js + TypeScript з використанням сучасного backend stack:
 
