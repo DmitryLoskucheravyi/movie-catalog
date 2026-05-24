@@ -359,17 +359,13 @@ Expected response:
 
 ## Docker Compose Running
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="1178" height="438" alt="image" src="https://github.com/user-attachments/assets/dd14ad5c-291c-4588-9ebf-89353a081b0b" />
 
 ---
 
 ## MongoDB Compass
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="1371" height="533" alt="image" src="https://github.com/user-attachments/assets/e3fcac23-f8f9-4cc1-9efc-78c70ccc72f4" />
 
 ---
 
@@ -392,7 +388,6 @@ Expected response:
 ## Docker Containers
 
 <img width="1100" height="184" alt="image" src="https://github.com/user-attachments/assets/c35d52bc-ac18-492e-97bf-836237a16cbc" />
-
 
 ---
 
