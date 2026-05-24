@@ -425,10 +425,6 @@ Time:        2.826 s
 Ran all test suites.
 
 ```
-
----
-
-
 ---
 
 # Production Features
@@ -443,8 +439,6 @@ Ran all test suites.
 * REST API architecture
 
 ---
-
-
 
 # Автор
 
