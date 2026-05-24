@@ -1,0 +1,15 @@
+node_modules
+
+dist
+
+.env
+
+.env.docker
+
+coverage
+
+.idea
+
+.vscode
+
+.DS_Store

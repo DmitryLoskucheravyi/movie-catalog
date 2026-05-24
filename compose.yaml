@@ -1,0 +1,44 @@
+services:
+  api:
+    build: .
+
+    container_name: movie-api
+
+    ports:
+      - "4000:3000"
+
+    env_file:
+      - .env.docker
+
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:8
+
+    container_name: movie-mongodb
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+
+      interval: 10s
+
+      timeout: 5s
+
+      retries: 5
+
+      start_period: 10s
+
+volumes:
+  mongodb_data:
