@@ -423,15 +423,10 @@ Tests:       8 passed, 8 total
 Snapshots:   0 total
 Time:        2.826 s
 Ran all test suites.
-```
 
 ---
 
-## Coverage
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
 
 ---
 
@@ -447,6 +442,8 @@ Ran all test suites.
 * REST API architecture
 
 ---
+
+```
 
 # Автор
 
