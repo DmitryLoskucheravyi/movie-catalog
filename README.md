@@ -397,6 +397,29 @@ Expected response:
 
 ---
 
+# FLY (LAB6)
+
+---
+
+## Movies endpoint
+
+<img width="552" height="789" alt="image" src="https://github.com/user-attachments/assets/4ecae0f2-c8fc-47bd-a046-f5c09e78dadb" />
+
+---
+
+## Health endpoint
+
+<img width="619" height="150" alt="image" src="https://github.com/user-attachments/assets/f2c4d570-fd39-4606-bb3f-bd55d1ec2c6e" />
+
+---
+
+## Production POST request 
+
+<img width="465" height="338" alt="image" src="https://github.com/user-attachments/assets/978f6e94-3347-4180-a805-8032610db728" />
+
+---
+
+
 ## Tests Passed
 
 ```text
