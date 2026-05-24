@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const connectDatabase = async (): Promise<void> => {
+export async function connectDatabase(): Promise<void> {
   try {
     const mongoUri = process.env.MONGODB_URI;
 
@@ -22,4 +22,4 @@ export const connectDatabase = async (): Promise<void> => {
 
     process.exit(1);
   }
-};
+}
