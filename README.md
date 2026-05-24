@@ -359,58 +359,67 @@ Expected response:
 
 ## Docker Compose Running
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="1178" height="438" alt="image" src="https://github.com/user-attachments/assets/dd14ad5c-291c-4588-9ebf-89353a081b0b" />
 
 ---
 
 ## MongoDB Compass
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="1371" height="533" alt="image" src="https://github.com/user-attachments/assets/e3fcac23-f8f9-4cc1-9efc-78c70ccc72f4" />
 
 ---
 
 ## GET /movies
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="351" height="396" alt="image" src="https://github.com/user-attachments/assets/a5723e51-e59d-458a-9952-bf6a7a9acf70" />
 
 ---
 
 ## POST /movies
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="471" height="285" alt="image" src="https://github.com/user-attachments/assets/13e395bf-ac6e-4c86-8e51-f12f4023b03a" />
+
+## GET /movies after posting
+
+<img width="403" height="600" alt="image" src="https://github.com/user-attachments/assets/2e2ee7ca-654a-4992-8d46-b3d07543695d" />
 
 ---
 
 ## Docker Containers
 
-```text
-[ PLACE SCREENSHOT HERE ]
-```
+<img width="1100" height="184" alt="image" src="https://github.com/user-attachments/assets/c35d52bc-ac18-492e-97bf-836237a16cbc" />
 
 ---
 
 ## Tests Passed
 
 ```text
-[ PLACE SCREENSHOT HERE ]
+ PASS  tests/model.test.ts
+ PASS  tests/movie.test.ts
+------------------|---------|----------|---------|---------|----------------------------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                      
+------------------|---------|----------|---------|---------|----------------------------------------
+All files         |   74.41 |       50 |   54.54 |   74.11 |                                        
+ src              |      90 |      100 |       0 |      90 |                                        
+  app.ts          |      90 |      100 |       0 |      90 | 12                                     
+ src/middleware   |      80 |       50 |   66.66 |   78.57 |                                        
+  errorHandler.ts |      50 |      100 |       0 |   33.33 | 9-11                                   
+  validate.ts     |    90.9 |       50 |     100 |    90.9 | 21                                     
+ src/models       |     100 |      100 |     100 |     100 |                                        
+  movie.model.ts  |     100 |      100 |     100 |     100 |                                        
+ src/routes       |   66.03 |       50 |      50 |   66.03 |                                        
+  movie.ts        |   66.03 |       50 |      50 |   66.03 | 15-19,42,46,53,59,63,82-92,109-126,136 
+ src/schemas      |     100 |      100 |     100 |     100 |                                        
+  movie.schema.ts |     100 |      100 |     100 |     100 |                                        
+------------------|---------|----------|---------|---------|----------------------------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        2.826 s
+Ran all test suites.
+
 ```
-
----
-
-## Coverage
-
-```text
-[ PLACE SCREENSHOT HERE ]
-```
-
 ---
 
 # Production Features
