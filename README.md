@@ -417,6 +417,12 @@ All files         |   74.41 |       50 |   54.54 |   74.11 |
  src/schemas      |     100 |      100 |     100 |     100 |                                        
   movie.schema.ts |     100 |      100 |     100 |     100 |                                        
 ------------------|---------|----------|---------|---------|----------------------------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        2.826 s
+Ran all test suites.
 ```
 
 ---
