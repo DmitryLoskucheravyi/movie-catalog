@@ -424,8 +424,9 @@ Snapshots:   0 total
 Time:        2.826 s
 Ran all test suites.
 
----
+```
 
+---
 
 
 ---
@@ -443,7 +444,7 @@ Ran all test suites.
 
 ---
 
-```
+
 
 # Автор
 
