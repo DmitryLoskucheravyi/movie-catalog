@@ -1,31 +1,29 @@
 import { z } from "zod";
 
 export const createMovieSchema = z.object({
-  title: z
-    .string()
-    .min(1, "Title is required")
-    .max(100, "Title too long"),
+  body: z.object({
+    title: z.string().min(1),
 
-  director: z
-    .string()
-    .min(1, "Director is required")
-    .max(100, "Director too long"),
+    director: z.string().min(1),
 
-  year: z
-    .number()
-    .int("Year must be integer")
-    .min(1888, "Invalid movie year")
-    .max(new Date().getFullYear(), "Year cannot be in future"),
+    year: z.number().min(1900).max(2100),
 
-  genre: z
-    .string()
-    .min(1, "Genre is required")
-    .max(50, "Genre too long"),
+    genre: z.string().min(1),
 
-  rating: z
-    .number()
-    .min(0, "Rating too low")
-    .max(10, "Rating too high")
+    rating: z.number().min(0).max(10)
+  })
 });
 
-export const updateMovieSchema = createMovieSchema.partial();
+export const updateMovieSchema = z.object({
+  body: z.object({
+    title: z.string().min(1).optional(),
+
+    director: z.string().min(1).optional(),
+
+    year: z.number().min(1900).max(2100).optional(),
+
+    genre: z.string().min(1).optional(),
+
+    rating: z.number().min(0).max(10).optional()
+  })
+});

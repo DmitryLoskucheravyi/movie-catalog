@@ -1,31 +1,28 @@
 import mongoose from "mongoose";
 
-import { MongoMemoryServer } from "mongodb-memory-server";
+process.env.JWT_ACCESS_SECRET =
+  "test_access_secret";
 
-let mongoServer: MongoMemoryServer;
+process.env.JWT_REFRESH_SECRET =
+  "test_refresh_secret";
 
 beforeAll(async () => {
-  mongoServer = await MongoMemoryServer.create();
-
-  const mongoUri = mongoServer.getUri();
-
-  await mongoose.connect(mongoUri);
+  await mongoose.connect(
+    "mongodb://127.0.0.1:27017/movie_catalog_test"
+  );
 });
 
 afterAll(async () => {
   await mongoose.connection.dropDatabase();
 
   await mongoose.connection.close();
-
-  await mongoServer.stop();
 });
 
-afterEach(async () => {
-  const collections = mongoose.connection.collections;
+beforeEach(async () => {
+  const collections =
+    mongoose.connection.collections;
 
   for (const key in collections) {
-    const collection = collections[key];
-
-    await collection.deleteMany({});
+    await collections[key].deleteMany({});
   }
 });

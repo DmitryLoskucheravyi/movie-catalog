@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
 
-import { MovieModel } from "../models/movie.model";
 
 import {
   createMovieSchema,
@@ -8,6 +7,12 @@ import {
 } from "../schemas/movie.schema";
 
 import { validate } from "../middleware/validate";
+import {
+  AuthRequest,
+  requireAuth
+} from "../middleware/requireAuth";
+
+import { MovieModel } from "../models/movie.model";
 
 const router = Router();
 
@@ -94,9 +99,14 @@ router.get("/:id", async (req: Request, res: Response) => {
 
 router.post(
   "/",
+  requireAuth,
   validate(createMovieSchema),
-  async (req: Request, res: Response) => {
-    const movie = await MovieModel.create(req.body);
+  async (req: AuthRequest, res: Response) => {
+    const movie = await MovieModel.create({
+      ...req.body,
+
+      owner: req.user?.userId
+    });
 
     res.status(201).json(movie);
   }
@@ -127,18 +137,28 @@ router.patch(
   }
 );
 
-router.delete("/:id", async (req: Request, res: Response) => {
-  const id = req.params.id as string;
+router.delete(
+  "/:id",
+  requireAuth,
+  async (req: AuthRequest, res: Response) => {
+    const movie = await MovieModel.findById(req.params.id);
 
-  const deletedMovie = await MovieModel.findByIdAndDelete(id);
+    if (!movie) {
+      return res.status(404).json({
+        message: "Movie not found"
+      });
+    }
 
-  if (!deletedMovie) {
-    return res.status(404).json({
-      message: "Movie not found"
-    });
+    if (movie.owner.toString() !== req.user?.userId) {
+      return res.status(403).json({
+        message: "Forbidden"
+      });
+    }
+
+    await movie.deleteOne();
+
+    res.status(204).send();
   }
-
-  res.status(204).send();
-});
+);
 
 export default router;

@@ -15,13 +15,7 @@ const config: Config = {
 
   setupFilesAfterEnv: [
     "<rootDir>/tests/setup.ts"
-  ],
-
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.test.json"
-    }
-  }
+  ]
 };
 
 export default config;

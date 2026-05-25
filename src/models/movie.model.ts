@@ -1,54 +1,34 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, {
+  InferSchemaType,
+  model,
+  Schema
+} from "mongoose";
 
-export interface MovieDocument extends Document {
-  title: string;
-
-  director: string;
-
-  year: number;
-
-  genre: string;
-
-  rating: number;
-
-  movieInfo?: string;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-}
-
-const movieSchema = new Schema<MovieDocument>(
+const movieSchema = new Schema(
   {
     title: {
       type: String,
       required: true,
-      trim: true,
-      minlength: 1,
-      maxlength: 100
+      trim: true
     },
 
     director: {
       type: String,
       required: true,
-      trim: true,
-      minlength: 1,
-      maxlength: 100
+      trim: true
     },
 
     year: {
       type: Number,
       required: true,
-      min: 1888,
-      max: new Date().getFullYear()
+      min: 1900,
+      max: 2100
     },
 
     genre: {
       type: String,
       required: true,
-      trim: true,
-      minlength: 1,
-      maxlength: 50
+      trim: true
     },
 
     rating: {
@@ -56,6 +36,12 @@ const movieSchema = new Schema<MovieDocument>(
       required: true,
       min: 0,
       max: 10
+    },
+
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
     }
   },
   {
@@ -75,5 +61,6 @@ movieSchema.virtual("movieInfo").get(function () {
   return `${this.title} (${this.year})`;
 });
 
-export const MovieModel: Model<MovieDocument> =
-  mongoose.model<MovieDocument>("Movie", movieSchema);
+export type Movie = InferSchemaType<typeof movieSchema>;
+
+export const MovieModel = model("Movie", movieSchema);

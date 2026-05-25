@@ -1,13 +1,23 @@
+import mongoose from "mongoose";
+
 import { MovieModel } from "../src/models/movie.model";
 
 describe("Movie Model", () => {
+  const ownerId = new mongoose.Types.ObjectId();
+
   it("should create movie", async () => {
     const movie = await MovieModel.create({
       title: "Interstellar",
+
       director: "Christopher Nolan",
+
       year: 2014,
+
       genre: "Sci-Fi",
-      rating: 9
+
+      rating: 9,
+
+      owner: ownerId
     });
 
     expect(movie.title).toBe("Interstellar");
@@ -17,31 +27,37 @@ describe("Movie Model", () => {
     );
   });
 
-  it("should fail validation", async () => {
-    let error: unknown;
+  it("should fail with invalid rating", async () => {
+    await expect(
+      MovieModel.create({
+        title: "Invalid Movie",
 
-    try {
-      await MovieModel.create({
-        title: "",
-        director: "",
-        year: 1700,
-        genre: "",
-        rating: 100
-      });
-    } catch (err) {
-      error = err;
-    }
+        director: "Unknown",
 
-    expect(error).toBeDefined();
+        year: 2020,
+
+        genre: "Drama",
+
+        rating: 20,
+
+        owner: ownerId
+      })
+    ).rejects.toThrow();
   });
 
   it("should generate virtual field", async () => {
     const movie = await MovieModel.create({
       title: "Dune",
+
       director: "Denis Villeneuve",
+
       year: 2021,
+
       genre: "Sci-Fi",
-      rating: 8.5
+
+      rating: 8.3,
+
+      owner: ownerId
     });
 
     expect(movie.movieInfo).toBe(
@@ -52,10 +68,16 @@ describe("Movie Model", () => {
   it("should include timestamps", async () => {
     const movie = await MovieModel.create({
       title: "Batman",
+
       director: "Matt Reeves",
+
       year: 2022,
+
       genre: "Action",
-      rating: 8
+
+      rating: 7.8,
+
+      owner: ownerId
     });
 
     expect(movie.createdAt).toBeDefined();
