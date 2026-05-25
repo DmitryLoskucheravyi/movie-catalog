@@ -1,24 +1,12 @@
 # Movie Catalog API
 
-Production-grade REST API для каталогу фільмів.
+Production-grade REST API для каталогу фільмів з JWT authentication, Docker infrastructure та MongoDB Atlas integration.
+
 ---
 
-Production URL:
+# Production URL
+
 https://movie-catalog-api.fly.dev/
-
----
-
-Проєкт створений на Node.js + TypeScript з використанням сучасного backend stack:
-
-* Express
-* MongoDB
-* Mongoose
-* Docker
-* Docker Compose
-* Jest
-* Supertest
-* Zod
-* MongoDB Atlas
 
 ---
 
@@ -33,6 +21,14 @@ https://movie-catalog-api.fly.dev/
 * Mongoose
 * Zod
 
+## Authentication
+
+* JWT Authentication
+* Refresh Tokens
+* bcrypt Password Hashing
+* Protected Routes
+* Owner Authorization
+
 ## Testing
 
 * Jest
@@ -45,6 +41,7 @@ https://movie-catalog-api.fly.dev/
 * Docker Compose
 * MongoDB Atlas
 * MongoDB Compass
+* Fly.io
 
 ---
 
@@ -58,6 +55,17 @@ https://movie-catalog-api.fly.dev/
 * Update movie
 * Delete movie
 
+## Authentication & Authorization
+
+* Register
+* Login
+* Logout
+* Current authenticated user
+* JWT access tokens
+* Refresh token cookies
+* Protected routes
+* Owner authorization
+
 ## Додаткові можливості
 
 * Filtering
@@ -68,6 +76,7 @@ https://movie-catalog-api.fly.dev/
 * Dockerized infrastructure
 * Persistent MongoDB storage
 * Healthcheck
+* Integration testing
 
 ---
 
@@ -80,19 +89,20 @@ https://movie-catalog-api.fly.dev/
 
   /middleware
     errorHandler.ts
+    requireAuth.ts
     validate.ts
 
   /models
     movie.model.ts
+    user.model.ts
 
   /routes
+    auth.ts
     movie.ts
 
   /schemas
+    auth.schema.ts
     movie.schema.ts
-
-  /storage
-    movie.ts
 
   app.ts
   server.ts
@@ -102,7 +112,6 @@ https://movie-catalog-api.fly.dev/
   movie.test.ts
   model.test.ts
 
-.env.example
 Dockerfile
 compose.yaml
 package.json
@@ -113,19 +122,19 @@ tsconfig.json
 
 # Встановлення проєкту
 
-## 1. Clone repository
+## Clone repository
 
 ```bash
 git clone YOUR_REPOSITORY_URL
 ```
 
-## 2. Перейти у папку проєкту
+## Перейти у папку проєкту
 
 ```bash
 cd movie-catalog-api
 ```
 
-## 3. Встановлення залежностей
+## Встановлення залежностей
 
 ```bash
 npm install
@@ -149,6 +158,10 @@ PORT=3000
 MONGODB_URI=your_mongodb_connection_string
 
 DATABASE_NAME=movie_catalog
+
+JWT_ACCESS_SECRET=your_access_secret
+
+JWT_REFRESH_SECRET=your_refresh_secret
 ```
 
 ---
@@ -209,15 +222,49 @@ docker compose down
 
 # API Endpoints
 
-## Healthcheck
+# Authentication
+
+## Register
+
+### POST
+
+```http
+/auth/register
+```
+
+---
+
+## Login
+
+### POST
+
+```http
+/auth/login
+```
+
+---
+
+## Logout
+
+### POST
+
+```http
+/auth/logout
+```
+
+---
+
+## Current User
 
 ### GET
 
 ```http
-/health
+/auth/me
 ```
 
 ---
+
+# Movies
 
 ## Get all movies
 
@@ -241,6 +288,8 @@ docker compose down
 
 ## Create movie
 
+Protected route (JWT required)
+
 ### POST
 
 ```http
@@ -263,6 +312,8 @@ docker compose down
 
 ## Update movie
 
+Protected route (JWT required)
+
 ### PATCH
 
 ```http
@@ -272,6 +323,8 @@ docker compose down
 ---
 
 ## Delete movie
+
+Protected route with owner authorization
 
 ### DELETE
 
@@ -283,8 +336,6 @@ docker compose down
 
 # Pagination
 
-Приклад:
-
 ```http
 /movies?page=1&limit=10
 ```
@@ -293,8 +344,6 @@ docker compose down
 
 # Filtering
 
-Приклад:
-
 ```http
 /movies?genre=Sci-Fi
 ```
@@ -302,8 +351,6 @@ docker compose down
 ---
 
 # Sorting
-
-Приклад:
 
 ```http
 /movies?sortBy=year&order=desc
@@ -345,8 +392,6 @@ mongodb://localhost:27017
 
 # Healthcheck
 
-Перевірка API:
-
 ```http
 GET /health
 ```
@@ -385,6 +430,8 @@ Expected response:
 
 <img width="471" height="285" alt="image" src="https://github.com/user-attachments/assets/13e395bf-ac6e-4c86-8e51-f12f4023b03a" />
 
+---
+
 ## GET /movies after posting
 
 <img width="403" height="600" alt="image" src="https://github.com/user-attachments/assets/2e2ee7ca-654a-4992-8d46-b3d07543695d" />
@@ -397,7 +444,39 @@ Expected response:
 
 ---
 
-# FLY (LAB6)
+# Authentication Screenshots
+
+## Register Request
+
+[SCREENSHOT]
+
+---
+
+## Login Request
+
+[SCREENSHOT]
+
+---
+
+## Authenticated /auth/me
+
+[SCREENSHOT]
+
+---
+
+## Protected POST /movies
+
+[SCREENSHOT]
+
+---
+
+## Forbidden DELETE Request
+
+[SCREENSHOT]
+
+---
+
+# Fly.io Deployment
 
 ## Movies endpoint
 
@@ -411,12 +490,11 @@ Expected response:
 
 ---
 
-## Production POST request 
+## Production POST request
 
 <img width="465" height="338" alt="image" src="https://github.com/user-attachments/assets/978f6e94-3347-4180-a805-8032610db728" />
 
 ---
-
 
 ## Tests Passed
 
@@ -424,44 +502,44 @@ Expected response:
  PASS  tests/model.test.ts
  PASS  tests/movie.test.ts
 ------------------|---------|----------|---------|---------|----------------------------------------
-File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                      
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ------------------|---------|----------|---------|---------|----------------------------------------
-All files         |   74.41 |       50 |   54.54 |   74.11 |                                        
- src              |      90 |      100 |       0 |      90 |                                        
-  app.ts          |      90 |      100 |       0 |      90 | 12                                     
- src/middleware   |      80 |       50 |   66.66 |   78.57 |                                        
-  errorHandler.ts |      50 |      100 |       0 |   33.33 | 9-11                                   
-  validate.ts     |    90.9 |       50 |     100 |    90.9 | 21                                     
- src/models       |     100 |      100 |     100 |     100 |                                        
-  movie.model.ts  |     100 |      100 |     100 |     100 |                                        
- src/routes       |   66.03 |       50 |      50 |   66.03 |                                        
-  movie.ts        |   66.03 |       50 |      50 |   66.03 | 15-19,42,46,53,59,63,82-92,109-126,136 
- src/schemas      |     100 |      100 |     100 |     100 |                                        
-  movie.schema.ts |     100 |      100 |     100 |     100 |                                        
+All files         |   74.41 |       50 |   54.54 |   74.11 |
+ src              |      90 |      100 |       0 |      90 |
+  app.ts          |      90 |      100 |       0 |      90 | 12
+ src/middleware   |      80 |       50 |   66.66 |   78.57 |
+  errorHandler.ts |      50 |      100 |       0 |   33.33 | 9-11
+  validate.ts     |    90.9 |       50 |     100 |    90.9 | 21
+ src/models       |     100 |      100 |     100 |     100 |
+  movie.model.ts  |     100 |      100 |     100 |     100 |
+ src/routes       |   66.03 |       50 |      50 |   66.03 | 15-19,42,46,53,59,63,82-92,109-126,136
+ src/schemas      |     100 |      100 |     100 |     100 |
+  movie.schema.ts |     100 |      100 |     100 |     100 |
 ------------------|---------|----------|---------|---------|----------------------------------------
 
 Test Suites: 2 passed, 2 total
 Tests:       8 passed, 8 total
-Snapshots:   0 total
-Time:        2.826 s
-Ran all test suites.
-
 ```
+
 ---
 
 # Production Features
 
+* JWT Authentication
+* Refresh Tokens
+* Owner Authorization
+* Protected Routes
 * Multi-stage Docker build
 * Persistent Docker volumes
 * MongoDB Atlas integration
 * Local Docker MongoDB
-* Healthchecks
 * Validation middleware
 * Error handling middleware
 * REST API architecture
+* Integration testing
 
 ---
 
 # Автор
 
-Movie Catalog API — навчальний production-grade backend проєкт на Node.js + TypeScript.
+Movie Catalog API — навчальний production-grade backend проєкт на Node.js + TypeScript 🚀
