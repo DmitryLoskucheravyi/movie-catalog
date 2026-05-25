@@ -448,31 +448,28 @@ Expected response:
 
 ## Register Request
 
-[SCREENSHOTTTT]
+<img width="1326" height="367" alt="image" src="https://github.com/user-attachments/assets/250a91e7-74ff-4db3-8525-5011b27cb3e9" />
+
 
 ---
 
 ## Login Request
 
-[SCREENSHOT]
+<img width="1473" height="315" alt="image" src="https://github.com/user-attachments/assets/dbfe73fc-a295-43b7-9ddf-9e81826ef18d" />
+
 
 ---
 
 ## Authenticated /auth/me
 
-[SCREENSHOT]
+<img width="1456" height="359" alt="image" src="https://github.com/user-attachments/assets/16109f41-0b1b-4817-adf0-434a3cf97c92" />
 
 ---
 
 ## Protected POST /movies
 
-[SCREENSHOT]
+<img width="1441" height="391" alt="image" src="https://github.com/user-attachments/assets/0f0cf017-9ab7-49a6-b7b3-b5f75b48696a" />
 
----
-
-## Forbidden DELETE Request
-
-[SCREENSHOT]
 
 ---
 
