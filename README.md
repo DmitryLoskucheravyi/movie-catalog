@@ -448,7 +448,7 @@ Expected response:
 
 ## Register Request
 
-[SCREENSHOT]
+[SCREENSHOTTTT]
 
 ---
 
